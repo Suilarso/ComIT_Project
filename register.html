@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<!--
+    Author: Suilarso Japit
+    Date: Mar 10, 2018
+    Filename: contact.html
+    Purpose: This file contains html code related to contact me.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My Journey">
+    <meta name="author" content="Suilarso Japit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="./img/letters.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css" type="text/css" media="all">
+    <title>Contact</title>
+</head>
+
+<body>
+    <!-- SJ6100318 - This section contains main title and navigation items -->
+    <header class="headerID">
+        <nav>
+            <div class="home">
+                <a href="index.html" title="Suilarso's site">Home</a>
+            </div>
+            <div class="links">
+                <a href="general.html" title="General topic">General</a>
+                <a href="gallery.html" title="Suilarso's photo">Gallery</a>
+                <a href="about.html" title="About me">About</a>
+                <a href="contact.html" title="Contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Get in touch -->
+    <div id="contactForm">
+        <form action="mailto:suilarso@gmail.com" method="post" enctype="application/x-www-form-urlencoded">
+            <h2>Get in touch</h2>
+            <fieldset>
+              <!--
+              <legend>Contact Form</legend>
+              <br>
+              -->
+              <!-- SJ2200318 - Use select to input title -->
+              <label for="titleid">Title: </label>
+              <select name="Title">
+                  <option value="">Select one</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Dr">Dr</option>
+              </select>
+              <br>
+
+              <!-- SJ2200318 - First name -->
+              <label for="nameid">Name:</label>
+              <input type="text" name="name" placeholder="Firstname" id="nameid" title="Input firstname" required />
+              <br>
+              
+              <!-- SJ2200318 - Last name -->
+              <label for="surnameid">Surname:</label>
+              <input type="text" name="surname" placeholder="Lastname" id="surnameid" title="Input lastname"/>
+              <br>
+              <!--br-->
+
+              <!-- SJ2130318 - Creating email input field -->
+              <label for="emailid">E-Mail: </label>
+              <input type="email" name="email" id="emailid" placeholder="e.g. joe@example.com" 
+                  title="Input your E-Mail" required/>
+              <br>
+              <!--br-->
+
+              <!-- SJ0250318 - Creating phone input field -->
+              <label for="phoneid">Phone: </label>
+              <input type="tel" name="phone" id="phoneid" placeholder="000-000-0000">
+              <br>
+              <br>
+
+              <!-- SJ1260318 - Creating prefered mode of contact radio button -->
+              <div>
+                <label>Prefered mode of contact: </label>
+                <input name="contactMode" type="radio" value="false"> E-Mail
+                <input name="contactMode" type="radio" value="false"> Phone       
+              </div>
+              <!-- br -->
+
+              <!-- SJ0250318 - Creating best time to contact checkbox -->
+              <div>
+                <label>Best time to call: </label>
+                <input type="checkbox" name="bestTime" value="morning" checked="checked" > Morning
+                <input type="checkbox" name="bestTime" value="afternoon"> Afternoon
+                <input type="checkbox" name="bestTime" value="night"> Evening
+              </div>
+              <br>
+              <br>
+
+              <label for="aboutid">Message: </label>
+              <textarea name="about" cols="50" rows="5" title="Give me your feedback">Initial textarea text!</textarea>
+              <br>
+              <br>
+              <input type="submit" value="Send">
+            </fieldset>            
+        </form>
+        <hr>
+    </div>
+
+    <!-- SJ5160318 - Footer section -->
+    <footer id="footerInfo">
+        <p>
+            Suilarso Japit &nbsp; &#124; &nbsp; Winnipeg, Manitoba, Canada - 
+            <span style="color:rgb(240, 16, 16);">Last Updated: April 2018</span>
+        </p>
+    </footer>
+</body>
+</html>

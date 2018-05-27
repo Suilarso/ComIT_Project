@@ -1,0 +1,492 @@
+/*
+    Author: Suilarso Japit
+    Date: Apr 8, 2018
+    Filename: styles.css
+    Purpose: This is the css style elements for personal site.
+*/
+
+/* SJ6140418 - Common style */
+body {
+    color: #08034d;
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    background-image: url(../img/backgroundImage.jpg);
+    background-repeat: repeat;
+    /*opacity: 1;   SJ4260418 - Find out how to use it effectively */
+}
+
+/* SJ1230418 - definition for container grid */
+.container {
+    /*background-color: black;*/
+    display: grid;
+    /*grid-template-columns: [col1] 10% [col2] 10% [col3] 10% [col4] 10% [col5] 10% [col6] 10% [col7] 10% [col8] 10% [col9] 10% [col10] 10% [col11];*/
+    grid-template-columns: [col1] 15% [col2] 5% [col3] 10% [col4] 10% [col5] 10% [col6] 10% [col7] 10% [col8] 10% [col9] 5% [col10] 15% [col11];
+    grid-template-rows:    [row1] 20% [row2] auto [row3] 10% [row4];
+}
+
+/* SJ1230418 - Defining grid for header */
+.container > .headerID {
+    grid-area: header;
+    grid-column: col1 / col11;
+    grid-row: row1 / row2;
+}
+
+/* SJ1230418 - Defining grid for main area */
+.container > .leftPanel {
+    grid-area: leftpanel;
+    grid-column: col1 / col2;
+    grid-row: row2 / row3;
+    /*background-color: red;*/
+}
+.container > .catalogue {
+    grid-area: catarea;
+    grid-column: col2 / col10;
+    grid-row: row2 / row3;
+    /*background-color: white;*/
+}
+.container > .rightPanel {
+    grid-area: rightpanel;
+    grid-column: col10 / col11;
+    grid-row: row2 / row3;
+    /*background-color: red;*/
+}
+
+.container > #contactForm {
+    grid-column: col2 / col10;
+    grid-row: row2 / row3;
+}
+
+/* SJ1230418 - Defining grid for footer */
+.container > .footerID {
+    grid-area: footer;
+    grid-column: col1 / col11;
+    grid-row: row3 / row4;
+}
+
+
+/* SJ2240418 - Styling header and footer elements */
+/* SJ3250418 - This style is to help ease of development. Remove after use */
+/*.upperHeader {
+    border: 1px solid black;
+}*/
+
+.headerID .logo {
+    margin-top: 5px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+.headerID > .upperHeader > h2 {
+    position: relative;
+    bottom: 8px;
+    display: inline-block;
+    font-style: italic;
+    color: crimson;
+}
+
+.headerID form {
+    position: relative;
+    bottom: 30px;
+    display: inline-block;
+    width: 0px;
+    padding: 0px 0px;
+    margin: 0px 0px 0px 375px;
+    /*margin: 0 auto;*/
+    text-align: right;
+    /*border-bottom: 1px solid #eee;*/
+}
+
+input[type="text"], input[type="password"], button[type='submit'] {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 5px;
+    outline: none;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, button[type='submit']:focus {
+    border: 1px solid #EC576B;
+    box-shadow: 0 6px 6px -6px #777;
+}
+
+button[type='submit'] {
+    background-color: #EC576B;
+    color: white;
+    margin-right: 0;
+    /*color: rgb(204, 203, 198);  for testing */
+}
+
+button[type='submit']:hover {
+    background-color: rgb(240, 50, 76);
+    color: white;
+    cursor: pointer;
+}
+
+/*
+    background-color: chocolate;
+    box-shadow: 0 2px 1px #777;
+*/
+
+/* SJ3250418 - This style is to help ease of development. Remove after use */
+.lowerHeader {
+    border-bottom: 1px solid black;
+}
+
+.headerID > nav > div[class="links"] {
+    height: 60px;
+    width: 85%;
+}
+
+/* SJ0290418 - Creating sort of registration button */
+.headerID > nav > div[class="register"] > a {
+    color: blue;
+    font-style: italic;
+    margin: 0px;
+    padding: 5px;
+    border: 2px solid red;
+    border-radius: 10px;
+    /*font-size: 20px;*/
+    /*text-align: right;*/
+    /*text-shadow: 0px 2px 1px black;*/
+}
+
+.headerID > nav > div[class="register"] > a:hover {
+    background-color: white;
+}
+
+/* SJ3250418 - Share between header and footer */
+.headerID > nav a:first-child, .footerID > nav a:first-child {
+    margin-left: 20px;
+}
+
+/* SJ3250418 - Share between header and footer */
+.headerID > nav a, .footerID > nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    /*margin-right: 10px;*/
+    margin: 20px 5px 5px 5px;
+}
+
+/* SJ3250418 - Share between header and footer */
+.headerID > nav a:hover, .footerID > nav a:hover {
+    text-shadow: 0px 1px 5px rgb(164, 243, 16);
+    color: sienna;
+}
+
+.headerID > nav > div {
+    display: inline-block;
+}
+
+/*
+.footerID .upperFooter {
+    border-bottom: 1px solid black;
+}
+*/
+
+.footerID .lowerFooter {
+    margin-top: 15px;
+    margin-left: 18px;
+    margin-right: 25px;
+    font-size: small;
+    color: black;
+}
+
+.footerID span {
+    color: rgb(240, 16, 16);
+}
+/*
+text-shadow: 0px 1px 5px rgb(245, 118, 118);
+*/
+/*
+a:hover {
+    color: red;
+}*/
+
+
+/* SJ3250418 - Styling main area */
+.leftPanel, .catalogue, .rightPanel, #contactForm {
+    border-bottom: 1px solid black;
+}
+
+.leftPanel {
+    /*height: 0px;*/
+    /*background-color: rgb(240, 203, 156);*/
+    background-color: wheat;
+    white-space: normal;
+}
+
+.catalogue {
+    background-color: white;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    /*display: inline;*/
+    justify-self: center;
+    align-self: center;
+    white-space: normal;
+    /*height: 0px;*/
+}
+
+.catalogue figure {
+    /*background-color: red;*/
+    display: inline-block;
+    overflow-wrap: normal;
+    margin: 5px 2px;
+    width: 118px;
+    /*width: 140px;*/
+    height: 125px;
+}
+
+figure figcaption {
+    display: inline-block;
+}
+
+.catalogue img {
+    position: relative;
+    left: 5px;
+    top: 5px;
+    /*margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 1px;*/
+    margin-bottom: 3px;
+    width: 100px;
+    height: 100px;
+}
+
+.rightPanel {
+    /*height: 0px;*/
+    /*background-color: rgb(240, 203, 156);*/
+    background-color: wheat;
+    white-space: normal;
+}
+
+.rightPanel .reviewDetail button {
+    margin: 10px 5px 5px 10px;
+    padding: 5px 8px;
+    border: 2px solid black;
+    /*background-color: rgb(204, 203, 198);*/
+    background-color: hsla(49, 83%, 84%, 0.856);
+    border-radius: 8px;
+}
+
+.rightPanel .reviewDetail > button[class='view']:hover, .rightPanel .reviewDetail > button[class='confirm']:hover {
+    background-color: red;
+}
+
+/* SJ0130518 - Reserved this place for styling class="invoice" and class="totalAmt" */
+
+/* SJ5040518 - CSS style for contact.html */
+.container #contactForm {
+    /*margin: 0px 25px;*/
+    margin: 0px 0px;
+    white-space: normal;
+}
+
+.container > #contactForm > form {
+    /*background-color: #eee;*/
+    /*border: 1px solid #ddd;*/
+    font-size: 16px;
+    /*width: 750px;*/
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px;
+    /*color: #1815b3fb;*/
+    color: black;
+}
+
+.container > #contactForm h2 {
+    margin: 0;
+    /*margin-bottom: 40px;*/
+    margin-bottom: 25px;
+}
+
+.container > #contactForm fieldset {
+    border: 0;
+    padding: 0;
+    margin: 10px 0px;
+}
+
+.container > #contactForm label, .container > #contactForm div label {
+    display: inline-block;
+    width: 190px;
+    padding-right: 20px;
+}
+
+.container > #contactForm div {
+    display: inline-block;
+    width: 500px;
+    padding-right: 20px;
+}
+
+input[name="name"], input[name="surname"], input[type="email"], input[type="tel"], 
+textarea[name="about"], select[name="Title"] {
+    display: inline-block;
+    width: 417px;
+    padding: 0.5em;
+    font-size: 16px;
+    border: 1px solid #ddd;;
+    color: gray;
+    outline-color: #1abc9c;
+}
+
+textarea {
+    vertical-align: middle;
+}
+
+.container > #contactForm label[for="aboutid"] {
+    vertical-align: top;
+}
+
+input[type="submit"] {
+    display: block;
+    position: relative;
+    left: 525px;
+    /*padding: 19px 39px 18px 39px;*/
+    padding: 15px 35px 15px 35px;
+    color: white;
+    background-color: #98a8a8;
+    font-size: 18px;
+    text-align: center;
+    /*width: 100%;*/
+    border: 1px solid #16a085;
+    border-radius: 14px;
+}
+
+input[type="submit"]:hover {
+    background-color: #ee1b96;
+}
+
+/*input[type="checkbox"]:checked {
+    background-color: green;
+}*/
+
+/* SJ0130518 - CSS style for calendar */
+#calendar-container
+{
+    /*padding: 10px; */ /*SJ0130518 - Original value*/
+    /*width: 210px;*/ /*SJ0130518 - Original value*/
+    /*height: 240px;*/ /*SJ0130518 - Original value*/
+    margin-top: 15px;  /*SJ3160518 - Added by SJ*/
+    margin-bottom: 5px;  /*SJ3160518 - Added by SJ*/
+    margin-left: 5px;  /*SJ3160518 - Added by SJ*/
+    margin-right: 0px;  /*SJ3160518 - Added by SJ*/
+    color: blue;  /*SJ3160518 - Added by SJ*/
+    padding: 5px;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    /*font-size: 16px;*/ /*SJ0130518 - Original value*/
+    font-size: 10px;
+    font-family: Arial;
+    background-image: linear-gradient(#fff, #d3d3d3);
+    /*background-image: linear-gradient(wheat, wheat);*/
+}
+
+#calendar-container>div
+{
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#calendar-month-year
+{
+    margin: 5px;
+}
+
+#calendar-dates>table>tr>td
+{
+    /*padding: 5px;*/ /*SJ0130518 - Original value*/
+    padding: 2px;
+}
+
+
+/* SJ6050518 - Below style belongs to personal web, copy only those related, the rest will be
+   removed when the project is working. */
+
+#main {
+    font-size: 16px;
+    padding: 0px 15px;
+    white-space: normal;
+    text-align: justify;
+}
+
+.iframeContent {
+    margin: 25px 25px;
+    border: 1px solid black;
+}
+
+/* SJ1090418 - Retrieved from version 1 of about.html*/
+#profileImg {
+    float: left;
+    margin: 10px 25px;
+    border: 1px;
+    padding: 1px;
+}
+
+#profileDesc {
+    display: inline;
+    margin: 5px 20px;
+    /*margin-left: 10px;
+    margin-right: 10px;
+    max-width: 800px;
+    max-height: 800px;*/
+}
+
+.miscStuff, .contactInfo {
+    margin: 25px 20px;
+}
+
+#profileDesc > h2 {
+    margin: 10px 0px 5px 0px;
+}
+
+/* SJ1090418 - CSS style for gallery.html */
+.galleryTheme {
+    margin: 0px 5px;
+}
+
+#main .galleryH2 {
+    margin: 25px 25px;
+}
+
+/* SJ1090418 - Retrieved from general.html */
+.tableStyle {
+    text-align: center;
+}
+
+.tableStyle .linkID:hover {
+    background-color: lightgray;
+}
+
+.rowId:nth-child(even) {
+    /*background-color: rgba(204, 188, 188, 0.212);*/
+    background-color: rgba(204, 188, 188, 0.863);
+}
+
+.tableClass, .videoArea {
+    margin: 5px 25px;
+}
+
+/* SJ1090418 - CSS style for detail.html */
+.detBody {
+    padding-top: 0px;
+}
+
+#detail {
+    margin: 0px 25px;
+    white-space: normal;
+    text-align: justify;
+}
+
+#detail a[class="linkID"]:hover {
+    background-color: darkgray;
+}
+
+
