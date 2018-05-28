@@ -16,6 +16,7 @@ window.onload = function()
             ImgSrc: './img/bearing/ballB.jpeg',
             ImgAlt: 'Bearing Image',
             ImgTitle: 'Nachi',
+            desc: 'Nachi bearing',
             price: 12.5,
             quantity: 0,
         },
@@ -24,6 +25,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/pencilB.jpeg",
             ImgAlt: "Pencil Image",
             ImgTitle: "Pilot",
+            desc: 'Pilot pencil',
             price: 1.50,
             quantity: 0,
         },
@@ -32,6 +34,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/penlover.jpeg",
             ImgAlt: "Pen Image",
             ImgTitle: "Pilot",
+            desc: 'Pilot pen',
             price: 8.50,
             quantity: 0,
         },
@@ -40,6 +43,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/papermateamazon.jpeg",
             ImgAlt: "Pencil Image",
             ImgTitle: "Papermate",
+            desc: 'Papermate pencil',
             price: 3.50,
             quantity: 0,
         },
@@ -48,6 +52,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/papermateoffice.jpeg",
             ImgAlt: "Pen Image",
             ImgTitle: "Papermate",
+            desc: 'Papermate pen',
             price: 6.50,
             quantity: 0,
         },
@@ -56,6 +61,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/papermateofficework.jpeg",
             ImgAlt: "Pen Image",
             ImgTitle: "Papermate",
+            desc: 'Papermate pen',
             price: 6.50,
             quantity: 0,
         },
@@ -64,6 +70,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/pentelebay.jpeg",
             ImgAlt: "Pencil Image",
             ImgTitle: "Pentel",
+            desc: 'Pentel pencil',
             price: 4.50,
             quantity: 0,
         },
@@ -72,6 +79,7 @@ window.onload = function()
             ImgSrc: "./img/pencil/pentelwhite.jpeg",
             ImgAlt: "Pen Image",
             ImgTitle: "Pentel",
+            desc: 'Pentel pen',
             price: 5.50,
             quantity: 0,
         }
@@ -149,10 +157,55 @@ window.onload = function()
     function createInvoiceDetailDIV()
     {
         const invoiceDetail = "<div class='invoiceDetailClass'></div>";
-        cat.innerHTML = invoiceNumber;
-
-        return ;
+        cat.innerHTML = invoiceDetail;
     }  //SJ6260518 - End of createInvoiceDetailDIV() function
+
+    //SJ1280518 - This function populate invoice detail one line for each item in catalogue DIV
+    function populateInvoiceDetail()
+    {
+
+        let desc = '';
+        let qty = '';
+        let unitPrice = '';
+        let subtotal = '';
+        let total = '';
+        let addButton = '';
+        let delButton = '';
+        //let totalButton = 0;
+
+        //let invDetail = createInvoiceDetailDIV();
+
+        //SJ1280518 - Item's description, qty purchase, add and minus button to facilitate change of 
+        //purchase items, unit price, and sut-total
+        let tableContents = "<table width=\"300\" cellspacing=\"0\" cellpadding=\"10\"><tbody>"
+        /*for (let i=0; i<=9; i++)
+        {
+            tableContents += "<tr><td>" + "content" + "</tr></td>";
+        }*/
+        itemsArray.forEach(function(item, index)
+        {
+            if (item.quantity !== 0)
+            {
+                const subtotal = item.quantity * item.price;
+                tableContents += "<tr><td>" + item.desc;  //SJ1280518 - Add description to table row
+                tableContents += item.quantity.toString() + item.price.toString();  //SJ1280518 - Add qty and unit price
+                tableContents += subtotal.toString();  //SJ1280518 - Add subtotal
+                tableContents += "</tr></td>";  //SJ1280518 - Now add the closing tag
+            }  
+        });
+        tableContents += "</tbody></table>";
+        cat.innerHTML = tableContents;
+
+//        addButton = document.createElement('button');
+//        addButton.innerText = '+';
+//        addButton.setAttribute('class', 'addButton'.concat(index));
+//        delButton = document.createElement('button');
+//        delButton.innerText = '-';
+//        delButton.setAttribute('class', 'delButton'.concat(index));
+//        totalButton += 1;
+
+        //invDetail.style.display = 'inline-block';
+    }
 
     //SJ5250518 - Function to display invoice detail. First, remove mechandise items from catalogue
     //SJ5250518 - and then add invoice detail.
@@ -164,8 +217,19 @@ window.onload = function()
         //SJ5250518 - Replace catalogue elements with invoice details
         //const invoiceNumber = document.createElement('p');
         const invoiceString = "Invoice: ".concat('006411');
-        const invoiceNumber = "<p class='invoiceClass'>".concat(invoiceString).concat("</p>");
-        cat.innerHTML = invoiceNumber;
+        let invNumber = '';
+        //cat.innerHTML = invoiceNumber;
+
+        createInvoiceNumberDIV();  //SJ1280518 - Create DIV element for invoice number
+        invNumber = document.querySelector(".invoiceNoClass");
+        invNumber.style.margin = '5px';
+        invNumber.style.border = '1px solid black';
+        invNumber.style.position = 'relative';
+        invNumber.style.left = '0px';
+        invNumber.innerText = invoiceString;
+
+        //invDetail = createInvoiceDetailDIV();
+        populateInvoiceDetail();
 /*
 figureElement = document.createElement('figure');
         imgElement = document.createElement('img');
