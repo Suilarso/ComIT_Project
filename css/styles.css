@@ -12,8 +12,8 @@ body {
     padding: 0px 0px 0px 0px;
     font-family: Arial, Helvetica, sans-serif;
     white-space: nowrap;
-    background-image: url(../img/backgroundImage.jpg);
-    background-repeat: repeat;
+    /*background-image: url(../img/backgroundImage.jpg);
+    background-repeat: repeat;*/
     /*opacity: 1;   SJ4260418 - Find out how to use it effectively */
 }
 
@@ -23,6 +23,7 @@ body {
     display: grid;
     /*grid-template-columns: [col1] 10% [col2] 10% [col3] 10% [col4] 10% [col5] 10% [col6] 10% [col7] 10% [col8] 10% [col9] 10% [col10] 10% [col11];*/
     grid-template-columns: [col1] 15% [col2] 5% [col3] 10% [col4] 10% [col5] 10% [col6] 10% [col7] 10% [col8] 10% [col9] 5% [col10] 15% [col11];
+    /*grid-template-rows:    [row1] 20% [row2] auto [row3] 10% [row4];*/
     grid-template-rows:    [row1] 20% [row2] auto [row3] 10% [row4];
 }
 
@@ -31,6 +32,8 @@ body {
     grid-area: header;
     grid-column: col1 / col11;
     grid-row: row1 / row2;
+    background-image: url(../img/backgroundImage.jpg);
+    background-repeat: repeat;
 }
 
 /* SJ1230418 - Defining grid for main area */
@@ -63,6 +66,8 @@ body {
     grid-area: footer;
     grid-column: col1 / col11;
     grid-row: row3 / row4;
+    /*background-image: url(../img/backgroundImage.jpg);
+    background-repeat: repeat;*/
 }
 
 
@@ -216,7 +221,8 @@ a:hover {
 .leftPanel {
     /*height: 0px;*/
     /*background-color: rgb(240, 203, 156);*/
-    background-color: wheat;
+    /*background-color: wheat;*/
+    background-color: white;
     white-space: normal;
 }
 
@@ -241,10 +247,6 @@ a:hover {
     height: 125px;
 }
 
-figure figcaption {
-    display: inline-block;
-}
-
 .catalogue img {
     position: relative;
     left: 5px;
@@ -257,10 +259,20 @@ figure figcaption {
     height: 100px;
 }
 
+.catalogue > .invDetail {
+    background-color: white;
+    text-align: center;
+}
+
+figure figcaption {
+    display: inline-block;
+}
+
 .rightPanel {
     /*height: 0px;*/
     /*background-color: rgb(240, 203, 156);*/
-    background-color: wheat;
+    /*background-color: wheat;*/
+    background-color: white;
     white-space: normal;
 }
 

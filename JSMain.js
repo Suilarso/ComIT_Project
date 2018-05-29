@@ -177,20 +177,22 @@ window.onload = function()
 
         //SJ1280518 - Item's description, qty purchase, add and minus button to facilitate change of 
         //purchase items, unit price, and sut-total
-        let tableContents = "<table width=\"300\" cellspacing=\"0\" cellpadding=\"10\"><tbody>"
-        /*for (let i=0; i<=9; i++)
-        {
-            tableContents += "<tr><td>" + "content" + "</tr></td>";
-        }*/
+        //let tableContents = "<table class=\"invDetail\" width=\"300\" cellspacing=\"0\" cellpadding=\"10\"><thead>"
+        let tableContents = "<table class=\"invDetail\" width=\"100%\" cellspacing=\"0\" cellpadding=\"10\"><thead>"
+        //SJ2290518 - Creating row header for the table
+        tableContents += "<tr><th>Item</th><th>Quantity</th><th>Unit Price</th><th>Sub total</th></thead><tbody>";
+
+        //SJ1280518 - Creating row data for the table
         itemsArray.forEach(function(item, index)
         {
             if (item.quantity !== 0)
             {
                 const subtotal = item.quantity * item.price;
-                tableContents += "<tr><td>" + item.desc;  //SJ1280518 - Add description to table row
-                tableContents += item.quantity.toString() + item.price.toString();  //SJ1280518 - Add qty and unit price
-                tableContents += subtotal.toString();  //SJ1280518 - Add subtotal
-                tableContents += "</tr></td>";  //SJ1280518 - Now add the closing tag
+                tableContents += "<tr><td>" + item.desc + "</td>";  //SJ1280518 - Add description to table row
+                tableContents += "<td>" + item.quantity.toString() + "</td>";  //SJ2290518 - Add quantity
+                tableContents += "<td>" + item.price.toString() + "</td>";  //SJ1280518 - Add unit price
+                tableContents += "<td>" + subtotal.toString() + "</td></tr>";  //SJ1280518 - Add subtotal and closing tag
+                //tableContents += "";  //SJ1280518 - Now add the closing tag
             }  
         });
         tableContents += "</tbody></table>";
