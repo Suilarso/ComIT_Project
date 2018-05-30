@@ -37,7 +37,7 @@ body {
 }
 
 /* SJ1230418 - Defining grid for main area */
-.container > .leftPanel {
+.container > .leftPanel, .container > .visionPanel {
     grid-area: leftpanel;
     grid-column: col1 / col2;
     grid-row: row2 / row3;
@@ -49,14 +49,14 @@ body {
     grid-row: row2 / row3;
     /*background-color: white;*/
 }
-.container > .rightPanel {
+.container > .rightPanel, .container > .missionPanel {
     grid-area: rightpanel;
     grid-column: col10 / col11;
     grid-row: row2 / row3;
     /*background-color: red;*/
 }
 
-.container > #contactForm {
+.container > #contactForm, .container > .companyDesc {
     grid-column: col2 / col10;
     grid-row: row2 / row3;
 }
@@ -214,11 +214,11 @@ a:hover {
 
 
 /* SJ3250418 - Styling main area */
-.leftPanel, .catalogue, .rightPanel, #contactForm {
+/* .leftPanel, .catalogue, .rightPanel, #contactForm {
     border-bottom: 1px solid black;
-}
+}*/
 
-.leftPanel {
+.leftPanel, .visionPanel {
     /*height: 0px;*/
     /*background-color: rgb(240, 203, 156);*/
     /*background-color: wheat;*/
@@ -226,15 +226,14 @@ a:hover {
     white-space: normal;
 }
 
-.catalogue {
+.catalogue, .companyDesc {
     background-color: white;
     border-left: 1px solid black;
     border-right: 1px solid black;
     /*display: inline;*/
-    justify-self: center;
+    /*justify-self: center;  SJ3290518 - Don't use first*/
     align-self: center;
     white-space: normal;
-    /*height: 0px;*/
 }
 
 .catalogue figure {
@@ -262,13 +261,14 @@ a:hover {
 .catalogue > .invDetail {
     background-color: white;
     text-align: center;
+    /*justify-self: normal;*/
 }
 
 figure figcaption {
     display: inline-block;
 }
 
-.rightPanel {
+.rightPanel, .missionPanel {
     /*height: 0px;*/
     /*background-color: rgb(240, 203, 156);*/
     /*background-color: wheat;*/
@@ -289,6 +289,9 @@ figure figcaption {
     background-color: red;
 }
 
+.footerID {
+    border-top: 1px solid black;
+}
 /* SJ0130518 - Reserved this place for styling class="invoice" and class="totalAmt" */
 
 /* SJ5040518 - CSS style for contact.html */
