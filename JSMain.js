@@ -85,49 +85,54 @@ window.onload = function()
         }
     ];
 
-//SJ2150518 - From here, try to make it a function; populateMerchandise(goodsArray)
     //const mainContainer = document.getElementsByClassName('container');
     const cat = document.querySelector(".catalogue");
     const invoice = document.querySelector(".invoice");
     const totalAmt = document.querySelector(".totalAmt");
     //const button = document.querySelectorAll("button");
-    
-    //const cat = document.getElementsByClassName("catalogue");
-    let figureElement = '';
-    let imgElement = '';
-    let figcaptionElement = '';
-    let addButton = '';
-    let delButton = '';
-    let totalButton = 0;
-    //let adhocElement = '';
     let totalPurchase = 0;
 
-    //SJ0130518 - Populate merchandise items on catologue area
-    itemsArray.forEach(function(item, index)
+//SJ2150518 - From here, try to make it a function; populateMerchandise(goodsArray)
+    function populateMerchandise()
     {
-        figureElement = document.createElement('figure');
-        imgElement = document.createElement('img');
-        imgElement.setAttribute('src', item.ImgSrc);
-        imgElement.setAttribute('alt', item.ImgAlt);
-        imgElement.setAttribute('title', item.ImgTitle);
-        
-        figcaptionElement = document.createElement('figcaption');
-        figcaptionElement.innerText = '$'.concat(item.price);
+        //const cat = document.getElementsByClassName("catalogue");
+        let figureElement = '';
+        let imgElement = '';
+        let figcaptionElement = '';
+        let addButton = '';
+        let delButton = '';
+        let totalButton = 0;
+        //let adhocElement = '';
 
-        addButton = document.createElement('button');
-        addButton.innerText = '+';
-        addButton.setAttribute('class', 'addButton'.concat(index));
-        delButton = document.createElement('button');
-        delButton.innerText = '-';
-        delButton.setAttribute('class', 'delButton'.concat(index));
-        totalButton += 1;
+        //SJ0130518 - Populate merchandise items on catologue area
+        itemsArray.forEach(function(item, index)
+        {
+            figureElement = document.createElement('figure');
+            imgElement = document.createElement('img');
+            imgElement.setAttribute('src', item.ImgSrc);
+            imgElement.setAttribute('alt', item.ImgAlt);
+            imgElement.setAttribute('title', item.ImgTitle);
+            
+            figcaptionElement = document.createElement('figcaption');
+            figcaptionElement.innerText = '$'.concat(item.price);
 
-        figureElement.appendChild(imgElement);
-        figureElement.appendChild(figcaptionElement);
-        figureElement.appendChild(addButton);
-        figureElement.appendChild(delButton);
-        cat.appendChild(figureElement);
-    });
+            addButton = document.createElement('button');
+            addButton.innerText = '+';
+            addButton.setAttribute('class', 'addButton'.concat(index));
+            delButton = document.createElement('button');
+            delButton.innerText = '-';
+            delButton.setAttribute('class', 'delButton'.concat(index));
+            totalButton += 1;
+
+            figureElement.appendChild(imgElement);
+            figureElement.appendChild(figcaptionElement);
+            figureElement.appendChild(addButton);
+            figureElement.appendChild(delButton);
+            cat.appendChild(figureElement);
+        });
+
+        createButtonEventListener(totalButton);
+    }  //SJ4310518 - End of function populateMerchandise() { ... }
 //SJ2150518 - End
 
     //SJ0130518 - Function to style invoice and totalAmt
@@ -161,9 +166,8 @@ window.onload = function()
     }  //SJ6260518 - End of createInvoiceDetailDIV() function
 
     //SJ1280518 - This function populate invoice detail one line for each item in catalogue DIV
-    function populateInvoiceDetail()
+    function populateInvoiceDetail(createButtonCallback)
     {
-
         let desc = '';
         let qty = '';
         let unitPrice = '';
@@ -171,56 +175,113 @@ window.onload = function()
         let total = '';
         let addButton = '';
         let delButton = '';
+        let buttonArray = [];
         //let totalButton = 0;
-
-        //let invDetail = createInvoiceDetailDIV();
 
         //SJ1280518 - Item's description, qty purchase, add and minus button to facilitate change of 
         //purchase items, unit price, and sut-total
         //let tableContents = "<table class=\"invDetail\" width=\"300\" cellspacing=\"0\" cellpadding=\"10\"><thead>"
         let tableContents = "<table class=\"invDetail\" width=\"100%\" cellspacing=\"0\" cellpadding=\"10\"><thead>"
         //SJ2290518 - Creating row header for the table
-        tableContents += "<tr><th>Item</th><th>Quantity</th><th>Unit Price</th><th>Sub total</th></thead><tbody>";
+        tableContents += "<tr><th>Item</th><th>Quantity</th><th></th><th>Unit Price</th><th>Sub total</th></thead><tbody>";
 
         //SJ1280518 - Creating row data for the table
+        //let buttonNdx = 0;
         itemsArray.forEach(function(item, index)
         {
             if (item.quantity !== 0)
             {
                 const subtotal = item.quantity * item.price;
                 tableContents += "<tr><td>" + item.desc + "</td>";  //SJ1280518 - Add description to table row
-                tableContents += "<td>" + item.quantity.toString() + "</td>";  //SJ2290518 - Add quantity
+                tableContents += "<td class=" + "qtyClass".concat(index) + ">" + item.quantity.toString() + "</td>";  //SJ2290518 - Add quantity
+                tableContents += "<td><button class = " + "incButton".concat(index) + ">+</button>" + " ";  //SJ4310518 - Add incButton within quantity cell
+                tableContents += "<button class = " + 'decButton'.concat(index) + ">-</button></td>";  //SJ4310518 - Add decButton within quantity cell
                 tableContents += "<td>" + item.price.toString() + "</td>";  //SJ1280518 - Add unit price
-                tableContents += "<td>" + subtotal.toString() + "</td></tr>";  //SJ1280518 - Add subtotal and closing tag
-                //tableContents += "";  //SJ1280518 - Now add the closing tag
+                tableContents += "<td class=" + "subtotalClass".concat(index) + ">" + subtotal.toString() + "</td></tr>";  //SJ1280518 - Add subtotal and closing tag
+
+                buttonArray.push(index);
             }  
         });
         tableContents += "</tbody></table>";
         cat.innerHTML = tableContents;
 
-//        addButton = document.createElement('button');
-//        addButton.innerText = '+';
-//        addButton.setAttribute('class', 'addButton'.concat(index));
-//        delButton = document.createElement('button');
-//        delButton.innerText = '-';
-//        delButton.setAttribute('class', 'delButton'.concat(index));
-//        totalButton += 1;
+        createButtonCallback(buttonArray);
+    }
 
-        //invDetail.style.display = 'inline-block';
+    //SJ4310518 - This function facilitate adjustment to purchase
+    function adjustPurchase (event)
+    {
+        const invoice = document.querySelector(".invoice");
+        const totalAmt = document.querySelector(".totalAmt");
+        //event.preventDefault();
+        let buttonName = event.target.className;
+        let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));  //SJ4310518 - SJTODO: what happens when button digit is > 9
+        const qty = document.querySelector(".qtyClass".concat(ndx));
+        const subtotal = document.querySelector(".subtotalClass".concat(ndx));
+        const type = buttonName.substr(0, 3);  //SJ4310518 - Determince inc or dec transaction
+
+        //SJ4310518 - Now decide the type of adjustment. inc to add, dec to subtract
+        if (type === "inc")
+        {
+            itemsArray[ndx].quantity += 1;  //SJ4310518 - Increase purchase quantity by 1
+            totalPurchase += itemsArray[ndx].price;
+        }
+        else
+        {
+            if (itemsArray[ndx].quantity > 0)
+            {
+                itemsArray[ndx].quantity -= 1;  //SJ4310518 - Decrease purchase quantity by 1
+                totalPurchase -= itemsArray[ndx].price;
+            }
+        }
+
+        qty.innerHTML = itemsArray[ndx].quantity;
+        subtotal.innerHTML = itemsArray[ndx].price * itemsArray[ndx].quantity;
+        //SJ4310518 - Now adjust the invoice panel
+        styleInvoice(invoice);
+        styleTotalAmt(totalAmt, totalPurchase);
+//SJ4310518 - if (itemsArray[ndx].quantity > 0) { ... }
+    }
+
+    //SJ4310518 - This function create callback to button from view invoice details screen
+    function addButtonCallback(buttonArray)
+    {
+        let buttonClass = '';
+        let button = '';
+
+        buttonArray.forEach(function(index)
+        {
+            //SJ0130518 - This is for add button
+            buttonClass = 'incButton'.concat(index);
+            button = document.querySelector('.'.concat(buttonClass));
+            //there is a classList method I believe
+            //button.addEventListener('click', addPurchase);
+            button.addEventListener('click', adjustPurchase);
+
+            //SJ0130518 - This is for del button
+            buttonClass = 'decButton'.concat(index);
+            button = document.querySelector('.'.concat(buttonClass));
+            //button.addEventListener('click', delPurchase);
+            button.addEventListener('click', adjustPurchase);
+        });
     }
 
     //SJ5250518 - Function to display invoice detail. First, remove mechandise items from catalogue
     //SJ5250518 - and then add invoice detail.
     const viewDetail = function(event)
     {
-        //SJ5250518 - First remove catalogue items to make room for invoice detail
-        cat.innerHTML = '';
-
         //SJ5250518 - Replace catalogue elements with invoice details
-        //const invoiceNumber = document.createElement('p');
+        let buttonName = event.target.className;
         const invoiceString = "Invoice: ".concat('006411');
         let invNumber = '';
         //cat.innerHTML = invoiceNumber;
+
+        //SJ5250518 - First remove catalogue items to make room for invoice detail
+        cat.innerHTML = '';
+//SJ4310518 - SJTODO: Here we change the view button to back button and vice versa
+        /*if (buttonName === "view")  {
+            event.target.className = 'back';
+        }*/
 
         createInvoiceNumberDIV();  //SJ1280518 - Create DIV element for invoice number
         invNumber = document.querySelector(".invoiceNoClass");
@@ -231,32 +292,7 @@ window.onload = function()
         invNumber.innerText = invoiceString;
 
         //invDetail = createInvoiceDetailDIV();
-        populateInvoiceDetail();
-/*
-figureElement = document.createElement('figure');
-        imgElement = document.createElement('img');
-        imgElement.setAttribute('src', item.ImgSrc);
-        imgElement.setAttribute('alt', item.ImgAlt);
-        imgElement.setAttribute('title', item.ImgTitle);
-        
-        figcaptionElement = document.createElement('figcaption');
-        figcaptionElement.innerText = '$'.concat(item.price);
-
-        addButton = document.createElement('button');
-        addButton.innerText = '+';
-        addButton.setAttribute('class', 'addButton'.concat(index));
-        delButton = document.createElement('button');
-        delButton.innerText = '-';
-        delButton.setAttribute('class', 'delButton'.concat(index));
-        totalButton += 1;
-
-        figureElement.appendChild(imgElement);
-        figureElement.appendChild(figcaptionElement);
-        figureElement.appendChild(addButton);
-        figureElement.appendChild(delButton);
-        cat.appendChild(figureElement);
-
-*/
+        populateInvoiceDetail(addButtonCallback);
     }  //SJ5250518 - End of viewDetail() function
 
     //SJ5250518 - Function to confirm purchase
@@ -323,6 +359,8 @@ figureElement = document.createElement('figure');
     }  //SJ0130518 - End of delPurchase() function
 
     //let allButton = document.querySelectorAll('button');
+    function createButtonEventListener(totalButton)
+    {
     for (let i=0; i<totalButton; i++)
     {
         let buttonClass = '';
@@ -339,7 +377,7 @@ figureElement = document.createElement('figure');
         button = document.querySelector('.'.concat(buttonClass));
         button.addEventListener('click', delPurchase);
     }
-
+    }
     //SJ0130518 - Test if the functions are working
 
     //SJ0130518 - Below codes are used to create calendar
@@ -423,6 +461,7 @@ figureElement = document.createElement('figure');
     }  //SJ0130518 - End of get_calendar() function
 
     createCalendar();  //SJ1140518 - Block first
+    populateMerchandise();  //SJ4310518 - This is the main catalogue
     //SJ0130518 - End -------------------------------
 
 }  //SJ0130518 - End of main function

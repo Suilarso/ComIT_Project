@@ -264,6 +264,8 @@ a:hover {
     /*justify-self: normal;*/
 }
 
+/* SJ4310518 - This is for button in invoice detail screen */
+
 figure figcaption {
     display: inline-block;
 }
