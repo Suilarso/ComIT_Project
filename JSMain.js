@@ -92,7 +92,56 @@ window.onload = function()
     //const button = document.querySelectorAll("button");
     let totalPurchase = 0;
 
-//SJ2150518 - From here, try to make it a function; populateMerchandise(goodsArray)
+    //SJ5010618 - Function to handle login and logut
+    function loginAccountHandler(event)
+    {
+        const userNameElement = document.querySelector('.usernameClass');
+        const pwElement = document.querySelector('.pwClass');
+        const custNameElement = document.querySelector('.custoName');
+
+        if (event.currentTarget.innerText === "Login")
+        {
+            event.currentTarget.innerText = "Logout";
+            custNameElement.innerText = userNameElement.value;  //SJ0030618 - Display login name
+        }
+        else if (event.currentTarget.innerText === "Logout")
+        {
+            event.currentTarget.innerText = "Login";
+            //SJ0030618 - Reset login, password, and customer elements to their original value
+            custNameElement.innerText = userNameElement.value = pwElement.value = '';
+
+            //SJ0030618 - Decide if the main catalogue need to redo or not
+            if (totalPurchase)
+            {
+                resetToOriginal();
+            }
+        }
+        //custNameElement.innerText = event.target.form[0].value;//'ABC Co';
+        
+    }  //SJ5010618 - End of loginAccountHandler(event) { ... }
+
+    //SJ5010618 - Create button event handler for login button
+    function createLoginLogoutHandle()
+    {
+        //buttonClass = 'incButton'.concat(index);
+        const button = document.querySelector('.loginButton');
+
+        button.addEventListener('click', loginAccountHandler);
+
+    }  //SJ5010618 - End of function createLoginLogoutHandle() { ... }
+
+    //SJ5010618 - This function reset itemsArray quantity field to 0
+    function resetItemsArray()
+    {
+        itemsArray.forEach(function(item)
+        {
+            if (item.quantity)
+            {
+                item.quantity = 0;
+            }
+        });
+    }
+    //SJ2150518 - Function to populateMerchandise(goodsArray)
     function populateMerchandise()
     {
         //const cat = document.getElementsByClassName("catalogue");
@@ -255,13 +304,11 @@ window.onload = function()
             buttonClass = 'incButton'.concat(index);
             button = document.querySelector('.'.concat(buttonClass));
             //there is a classList method I believe
-            //button.addEventListener('click', addPurchase);
             button.addEventListener('click', adjustPurchase);
 
             //SJ0130518 - This is for del button
             buttonClass = 'decButton'.concat(index);
             button = document.querySelector('.'.concat(buttonClass));
-            //button.addEventListener('click', delPurchase);
             button.addEventListener('click', adjustPurchase);
         });
     }
@@ -271,43 +318,72 @@ window.onload = function()
     const viewDetail = function(event)
     {
         //SJ5250518 - Replace catalogue elements with invoice details
-        let buttonName = event.target.className;
+        //let buttonName = event.target.className;
         const invoiceString = "Invoice: ".concat('006411');
         let invNumber = '';
         //cat.innerHTML = invoiceNumber;
 
         //SJ5250518 - First remove catalogue items to make room for invoice detail
         cat.innerHTML = '';
-//SJ4310518 - SJTODO: Here we change the view button to back button and vice versa
-        /*if (buttonName === "view")  {
-            event.target.className = 'back';
-        }*/
 
-        createInvoiceNumberDIV();  //SJ1280518 - Create DIV element for invoice number
-        invNumber = document.querySelector(".invoiceNoClass");
-        invNumber.style.margin = '5px';
-        invNumber.style.border = '1px solid black';
-        invNumber.style.position = 'relative';
-        invNumber.style.left = '0px';
-        invNumber.innerText = invoiceString;
+        //SJ5010618 - Here we deal with view button
+        if (event.currentTarget.innerText === "View")
+        {
+            //event.target.className = 'back';
+            event.currentTarget.innerText = "Back";
+            createInvoiceNumberDIV();  //SJ1280518 - Create DIV element for invoice number
+            invNumber = document.querySelector(".invoiceNoClass");
+            invNumber.style.margin = '5px';
+            invNumber.style.border = '1px solid black';
+            invNumber.style.position = 'relative';
+            invNumber.style.left = '0px';
+            invNumber.innerText = invoiceString;
 
-        //invDetail = createInvoiceDetailDIV();
-        populateInvoiceDetail(addButtonCallback);
+            //invDetail = createInvoiceDetailDIV();
+            populateInvoiceDetail(addButtonCallback);
+        }
+        //SJ5010618 - Deal with back button
+        else if (event.currentTarget.innerText === "Back")
+        {
+            event.currentTarget.innerText = "View";
+            populateMerchandise();  //SJ5010618 - Restore merchandised main screen
+        }
+
     }  //SJ5250518 - End of viewDetail() function
+
+    //SJ0030618 - Function to reset to original state
+    function resetToOriginal()
+    {
+        //SJ5010618 - Clear the main area
+        cat.innerHTML = '';
+        //SJ5010618 - Clear the right panel area
+        totalPurchase = 0;
+        document.querySelector(".invoice").innerText = '';  //SJ5010618 - Can actually use global invoice var
+        document.querySelector(".totalAmt").innerText = '';  //SJ5010618 - Can actually use global totalAmt var
+        document.querySelector(".reviewDetail").innerHTML = '';
+
+        resetItemsArray();  //SJ5010618 - Reset itemsArray quantity field to 0
+        populateMerchandise();  //SJ5010618 - Restore merchandised main screen
+    }  //SJ0030618 - End of resetToOriginal() { ... } function
 
     //SJ5250518 - Function to confirm purchase
     const confirmTransaction = function(event)
     {
+        //const confirm = window.confirm('Please confirm to send');
 
+        //if (confirm)
+        if (window.confirm('Please confirm to send'))
+        {
+            resetToOriginal();
+        }
     }  //SJ5250518 - End of confirmTransaction() function
 
     //SJ0130518 - Function for button click action.
-    //let clickHandler = function(event)
     let addPurchase = function(event)
     {
+        //event.preventDefault();
         const invoice = document.querySelector(".invoice");
         const totalAmt = document.querySelector(".totalAmt");
-        //event.preventDefault();
         let buttonName = event.target.className;
         let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
 
@@ -321,9 +397,8 @@ window.onload = function()
             //SJ4170518 - Here we register click event function handler to both view and confirm button
             button = document.querySelector('.'.concat('view'));
             button.addEventListener('click', viewDetail);  //SJ5180518 - Change to correct function
-            /*button = document.querySelector('.'.concat('confirm'));
+            button = document.querySelector('.'.concat('confirm'));
             button.addEventListener('click', confirmTransaction);  //SJ5180518 - Change to correct function
-            */
         }
         itemsArray[ndx].quantity += 1;  //SJ2150518 - Increase purchase quantity by 1
         totalPurchase += itemsArray[ndx].price;
@@ -334,9 +409,9 @@ window.onload = function()
     //let delClickHandler = function(event)
     let delPurchase = function(event)
     {
+        //event.preventDefault();
         //const invoice = '';
         const totalAmt = document.querySelector(".totalAmt");
-        //event.preventDefault();
         let buttonName = event.target.className;
         let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
 
@@ -361,22 +436,22 @@ window.onload = function()
     //let allButton = document.querySelectorAll('button');
     function createButtonEventListener(totalButton)
     {
-    for (let i=0; i<totalButton; i++)
-    {
-        let buttonClass = '';
-        let button = '';
+        for (let i=0; i<totalButton; i++)
+        {
+            let buttonClass = '';
+            let button = '';
 
-        //SJ0130518 - This is for add button
-        buttonClass = 'addButton'.concat(i);
-        button = document.querySelector('.'.concat(buttonClass));
-        //there is a classList method I believe
-        button.addEventListener('click', addPurchase);
+            //SJ0130518 - This is for add button
+            buttonClass = 'addButton'.concat(i);
+            button = document.querySelector('.'.concat(buttonClass));
+            //there is a classList method I believe
+            button.addEventListener('click', addPurchase);
 
-        //SJ0130518 - This is for del button
-        buttonClass = 'delButton'.concat(i);
-        button = document.querySelector('.'.concat(buttonClass));
-        button.addEventListener('click', delPurchase);
-    }
+            //SJ0130518 - This is for del button
+            buttonClass = 'delButton'.concat(i);
+            button = document.querySelector('.'.concat(buttonClass));
+            button.addEventListener('click', delPurchase);
+        }
     }
     //SJ0130518 - Test if the functions are working
 
@@ -460,6 +535,7 @@ window.onload = function()
         return table;
     }  //SJ0130518 - End of get_calendar() function
 
+    createLoginLogoutHandle();
     createCalendar();  //SJ1140518 - Block first
     populateMerchandise();  //SJ4310518 - This is the main catalogue
     //SJ0130518 - End -------------------------------

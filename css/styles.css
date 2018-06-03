@@ -91,11 +91,13 @@ body {
     color: crimson;
 }
 
-.headerID form {
+/*.headerID form {*/
+.headerID .form {
     position: relative;
+    right: 5px;
     bottom: 30px;
     display: inline-block;
-    width: 0px;
+    /*width: 0px;*/
     padding: 0px 0px;
     margin: 0px 0px 0px 375px;
     /*margin: 0 auto;*/
@@ -142,8 +144,21 @@ button[type='submit']:hover {
 
 .headerID > nav > div[class="links"] {
     height: 60px;
-    width: 85%;
+    /*width: 85%;*/
+    width: 65%;
 }
+
+/* SJ5010618 - Styling custoName p element */
+.lowerHeader > p {
+    display: inline-block;
+    font-style: italic;
+    width: 25%;
+}
+/*
+.lowerHeader > .register {
+    position: relative;
+    right: 5px;
+}*/
 
 /* SJ0290418 - Creating sort of registration button */
 .headerID > nav > div[class="register"] > a {
@@ -423,7 +438,31 @@ input[type="submit"]:hover {
     padding: 2px;
 }
 
+/* SJ0030618 - CSS style for about.html */
 
+.container > .visionPanel, .container > .companyDesc, .container > .missionPanel
+{
+    margin: 10px 5px;
+    text-align: center;
+}
+
+.container > .companyDesc
+{
+    font-size: larger;
+}
+
+.container > .leftPanel, .container > .rightPanel
+{
+    margin: 10px 5px;
+    text-align: center;
+}
+
+/*
+.container > .missionPanel
+{
+
+}
+*/
 /* SJ6050518 - Below style belongs to personal web, copy only those related, the rest will be
    removed when the project is working. */
 
@@ -432,11 +471,6 @@ input[type="submit"]:hover {
     padding: 0px 15px;
     white-space: normal;
     text-align: justify;
-}
-
-.iframeContent {
-    margin: 25px 25px;
-    border: 1px solid black;
 }
 
 /* SJ1090418 - Retrieved from version 1 of about.html*/
@@ -490,20 +524,4 @@ input[type="submit"]:hover {
 .tableClass, .videoArea {
     margin: 5px 25px;
 }
-
-/* SJ1090418 - CSS style for detail.html */
-.detBody {
-    padding-top: 0px;
-}
-
-#detail {
-    margin: 0px 25px;
-    white-space: normal;
-    text-align: justify;
-}
-
-#detail a[class="linkID"]:hover {
-    background-color: darkgray;
-}
-
 
