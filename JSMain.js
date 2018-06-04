@@ -12,16 +12,16 @@
 window.onload = function()
 {
     const itemsArray = [
-        {
-            ImgSrc: './img/bearing/ballB.jpeg',
-            ImgAlt: 'Bearing Image',
-            ImgTitle: 'Nachi',
-            desc: 'Nachi bearing',
+        {//1
+            ImgSrc: './img/pencil/stabilohl.jpeg',
+            ImgAlt: 'Highliter Image',
+            ImgTitle: 'Stabilo',
+            desc: 'Stabilo HL',
             price: 12.5,
             quantity: 0,
         },
 
-        {
+        {//2
             ImgSrc: "./img/pencil/pencilB.jpeg",
             ImgAlt: "Pencil Image",
             ImgTitle: "Pilot",
@@ -30,16 +30,16 @@ window.onload = function()
             quantity: 0,
         },
 
-        {
-            ImgSrc: "./img/pencil/penlover.jpeg",
-            ImgAlt: "Pen Image",
-            ImgTitle: "Pilot",
-            desc: 'Pilot pen',
+        {//3
+            ImgSrc: "./img/pencil/fccrayon.jpeg",
+            ImgAlt: "Crayon Image",
+            ImgTitle: "Faber Castell",
+            desc: 'FC color',
             price: 8.50,
             quantity: 0,
         },
 
-        {
+        {//4
             ImgSrc: "./img/pencil/papermateamazon.jpeg",
             ImgAlt: "Pencil Image",
             ImgTitle: "Papermate",
@@ -48,7 +48,7 @@ window.onload = function()
             quantity: 0,
         },
 
-        {
+        {//5
             ImgSrc: "./img/pencil/papermateoffice.jpeg",
             ImgAlt: "Pen Image",
             ImgTitle: "Papermate",
@@ -57,7 +57,50 @@ window.onload = function()
             quantity: 0,
         },
 
-        {
+        {//6
+            ImgSrc: "./img/pencil/fcexpress.jpeg",
+            ImgAlt: "Express Image",
+            ImgTitle: "Faber Castell",
+            desc: 'FC color',
+            price: 9.50,
+            quantity: 0,
+        },
+
+        {//7
+            ImgSrc: "./img/pencil/stabilopencil.jpeg",
+            ImgAlt: "Pencil Image",
+            ImgTitle: "Stabilo",
+            desc: 'Stabilo pencil',
+            price: 5.50,
+            quantity: 0,
+        },
+
+        {//8
+            ImgSrc: "./img/pencil/pentelwhite.jpeg",
+            ImgAlt: "Pen Image",
+            ImgTitle: "Pentel",
+            desc: 'Pentel pen',
+            price: 5.50,
+            quantity: 0,
+        },
+//---------------------
+        {//9
+            ImgSrc: "./img/pencil/staedtlercolor.jpeg",
+            ImgAlt: "Staedtler Image",
+            ImgTitle: "Staedtler",
+            desc: 'staedtler color',
+            price: 5.50,
+            quantity: 0,
+        },
+        {//10
+            ImgSrc: "./img/pencil/penlover.jpeg",
+            ImgAlt: "Pen Image",
+            ImgTitle: "Pilot",
+            desc: 'Pilot pen',
+            price: 8.50,
+            quantity: 0,
+        },
+        {//11
             ImgSrc: "./img/pencil/papermateofficework.jpeg",
             ImgAlt: "Pen Image",
             ImgTitle: "Papermate",
@@ -65,8 +108,47 @@ window.onload = function()
             price: 6.50,
             quantity: 0,
         },
-
-        {
+        {//12
+            ImgSrc: "./img/pencil/castell.jpeg",
+            ImgAlt: "Castell Image",
+            ImgTitle: "Castell",
+            desc: 'Castell color',
+            price: 7.50,
+            quantity: 0,
+        },
+        {//13
+            ImgSrc: "./img/pencil/pentellead.jpeg",
+            ImgAlt: "Lead Image",
+            ImgTitle: "Pentel",
+            desc: 'Pentel lead',
+            price: 1.50,
+            quantity: 0,
+        },
+        {//14
+            ImgSrc: "./img/pencil/staedtler24.jpeg",
+            ImgAlt: "Staedtler Image",
+            ImgTitle: "Staedtler",
+            desc: 'Staedtler 24',
+            price: 12.50,
+            quantity: 0,
+        },
+        {//15
+            ImgSrc: "./img/pencil/staedtler12.jpeg",
+            ImgAlt: "Staedtler Image",
+            ImgTitle: "Staedtler",
+            desc: 'Staedtler 12',
+            price: 7.50,
+            quantity: 0,
+        },
+        {//16
+            ImgSrc: "./img/pencil/penteleraser.jpeg",
+            ImgAlt: "Eraser Image",
+            ImgTitle: "Pentel",
+            desc: 'Pentel eraser',
+            price: 1.50,
+            quantity: 0,
+        },
+        {//17
             ImgSrc: "./img/pencil/pentelebay.jpeg",
             ImgAlt: "Pencil Image",
             ImgTitle: "Pentel",
@@ -74,13 +156,12 @@ window.onload = function()
             price: 4.50,
             quantity: 0,
         },
-
-        {
-            ImgSrc: "./img/pencil/pentelwhite.jpeg",
-            ImgAlt: "Pen Image",
-            ImgTitle: "Pentel",
-            desc: 'Pentel pen',
-            price: 5.50,
+        {//18
+            ImgSrc: "./img/pencil/stabilocolor.jpeg",
+            ImgAlt: "Color Pencil Image",
+            ImgTitle: "Stabilo",
+            desc: 'Stabilo pencil',
+            price: 7.50,
             quantity: 0,
         }
     ];
@@ -90,6 +171,7 @@ window.onload = function()
     const invoice = document.querySelector(".invoice");
     const totalAmt = document.querySelector(".totalAmt");
     //const button = document.querySelectorAll("button");
+    let userAccount = '';
     let totalPurchase = 0;
 
     //SJ5010618 - Function to handle login and logut
@@ -102,13 +184,13 @@ window.onload = function()
         if (event.currentTarget.innerText === "Login")
         {
             event.currentTarget.innerText = "Logout";
-            custNameElement.innerText = userNameElement.value;  //SJ0030618 - Display login name
+            userAccount = custNameElement.innerText = userNameElement.value;  //SJ0030618 - Display login name
         }
         else if (event.currentTarget.innerText === "Logout")
         {
             event.currentTarget.innerText = "Login";
             //SJ0030618 - Reset login, password, and customer elements to their original value
-            custNameElement.innerText = userNameElement.value = pwElement.value = '';
+            userAccount = custNameElement.innerText = userNameElement.value = pwElement.value = '';
 
             //SJ0030618 - Decide if the main catalogue need to redo or not
             if (totalPurchase)
@@ -164,12 +246,15 @@ window.onload = function()
             
             figcaptionElement = document.createElement('figcaption');
             figcaptionElement.innerText = '$'.concat(item.price);
+            figcaptionElement.style.marginLeft = '5px';
 
             addButton = document.createElement('button');
             addButton.innerText = '+';
+            addButton.style.marginLeft = '5px';
             addButton.setAttribute('class', 'addButton'.concat(index));
             delButton = document.createElement('button');
             delButton.innerText = '-';
+            delButton.style.marginLeft = '5px';
             delButton.setAttribute('class', 'delButton'.concat(index));
             totalButton += 1;
 
@@ -182,7 +267,6 @@ window.onload = function()
 
         createButtonEventListener(totalButton);
     }  //SJ4310518 - End of function populateMerchandise() { ... }
-//SJ2150518 - End
 
     //SJ0130518 - Function to style invoice and totalAmt
     function styleInvoice(invoice)
@@ -264,7 +348,9 @@ window.onload = function()
         const totalAmt = document.querySelector(".totalAmt");
         //event.preventDefault();
         let buttonName = event.target.className;
-        let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));  //SJ4310518 - SJTODO: what happens when button digit is > 9
+        //let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));  //SJ4310518 - SJTODO: what happens when button digit is > 9
+        const firstInteger = getFirstNonAlpha(buttonName);
+        const ndx = parseInt(buttonName.substr(firstInteger+1, (buttonName.length-1)));
         const qty = document.querySelector(".qtyClass".concat(ndx));
         const subtotal = document.querySelector(".subtotalClass".concat(ndx));
         const type = buttonName.substr(0, 3);  //SJ4310518 - Determince inc or dec transaction
@@ -381,29 +467,35 @@ window.onload = function()
     //SJ0130518 - Function for button click action.
     let addPurchase = function(event)
     {
-        //event.preventDefault();
-        const invoice = document.querySelector(".invoice");
-        const totalAmt = document.querySelector(".totalAmt");
-        let buttonName = event.target.className;
-        let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
-
-        if (totalPurchase === 0)  //SJ3160518 - No purchase done before, therefore need to build view button
+        if (userAccount !== '')
         {
-            let reviewDetail = document.querySelector(".reviewDetail");
-            let buttons = "<button class='view'>View</button><button class='confirm'>Confirm</button>"
-            let button = '';
+            //event.preventDefault();
+            const invoice = document.querySelector(".invoice");
+            const totalAmt = document.querySelector(".totalAmt");
+            let buttonName = event.target.className;
+            //let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
 
-            reviewDetail.innerHTML = buttons;
-            //SJ4170518 - Here we register click event function handler to both view and confirm button
-            button = document.querySelector('.'.concat('view'));
-            button.addEventListener('click', viewDetail);  //SJ5180518 - Change to correct function
-            button = document.querySelector('.'.concat('confirm'));
-            button.addEventListener('click', confirmTransaction);  //SJ5180518 - Change to correct function
-        }
-        itemsArray[ndx].quantity += 1;  //SJ2150518 - Increase purchase quantity by 1
-        totalPurchase += itemsArray[ndx].price;
-        styleInvoice(invoice);
-        styleTotalAmt(totalAmt, totalPurchase);
+            const firstInteger = getFirstNonAlpha(buttonName);
+            const ndx = parseInt(buttonName.substr(firstInteger+1, (buttonName.length-1)));
+
+            if (totalPurchase === 0)  //SJ3160518 - No purchase done before, therefore need to build view button
+            {
+                let reviewDetail = document.querySelector(".reviewDetail");
+                let buttons = "<button class='view'>View</button><button class='confirm'>Confirm</button>"
+                let button = '';
+
+                reviewDetail.innerHTML = buttons;
+                //SJ4170518 - Here we register click event function handler to both view and confirm button
+                button = document.querySelector('.'.concat('view'));
+                button.addEventListener('click', viewDetail);  //SJ5180518 - Change to correct function
+                button = document.querySelector('.'.concat('confirm'));
+                button.addEventListener('click', confirmTransaction);  //SJ5180518 - Change to correct function
+            }
+            itemsArray[ndx].quantity += 1;  //SJ2150518 - Increase purchase quantity by 1
+            totalPurchase += itemsArray[ndx].price;
+            styleInvoice(invoice);
+            styleTotalAmt(totalAmt, totalPurchase);
+        }  //SJ1040618 - if (userAccount) { ... }
     }  //SJ0130518 - End of addPurchase() function
 
     //let delClickHandler = function(event)
@@ -413,7 +505,10 @@ window.onload = function()
         //const invoice = '';
         const totalAmt = document.querySelector(".totalAmt");
         let buttonName = event.target.className;
-        let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
+        //let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
+
+        const firstInteger = getFirstNonAlpha(buttonName);
+        const ndx = parseInt(buttonName.substr(firstInteger+1, (buttonName.length-1)));
 
         if (itemsArray[ndx].quantity)  //SJ2150518 - Can only remove items if it had been purchased
         {
@@ -454,6 +549,20 @@ window.onload = function()
         }
     }
     //SJ0130518 - Test if the functions are working
+
+    //SJ1040618 - Function to return index of first non-alphabet
+    function getFirstNonAlpha(str)
+    {
+        //for (var i = 0; i<str.length;i++)
+        for (var i=str.length - 1; i >= 0; i--)
+        {
+           if (isNaN(str[i]))
+           {
+              return i;
+           }
+        }
+        return false;
+    }  //SJ1040618 - End of getFirstNonAlpha(str) { ... }
 
     //SJ0130518 - Below codes are used to create calendar
     function createCalendar()

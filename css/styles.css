@@ -152,6 +152,7 @@ button[type='submit']:hover {
 .lowerHeader > p {
     display: inline-block;
     font-style: italic;
+    font-size: 24px;
     width: 25%;
 }
 /*
@@ -449,6 +450,7 @@ input[type="submit"]:hover {
 .container > .companyDesc
 {
     font-size: larger;
+    /*font-size: 24px;*/
 }
 
 .container > .leftPanel, .container > .rightPanel
