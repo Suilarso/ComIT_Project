@@ -20,7 +20,6 @@ window.onload = function()
             price: 12.5,
             quantity: 0,
         },
-
         {//2
             ImgSrc: "./img/pencil/pencilB.jpeg",
             ImgAlt: "Pencil Image",
@@ -29,7 +28,6 @@ window.onload = function()
             price: 1.50,
             quantity: 0,
         },
-
         {//3
             ImgSrc: "./img/pencil/fccrayon.jpeg",
             ImgAlt: "Crayon Image",
@@ -38,7 +36,6 @@ window.onload = function()
             price: 8.50,
             quantity: 0,
         },
-
         {//4
             ImgSrc: "./img/pencil/papermateamazon.jpeg",
             ImgAlt: "Pencil Image",
@@ -47,7 +44,6 @@ window.onload = function()
             price: 3.50,
             quantity: 0,
         },
-
         {//5
             ImgSrc: "./img/pencil/papermateoffice.jpeg",
             ImgAlt: "Pen Image",
@@ -56,7 +52,6 @@ window.onload = function()
             price: 6.50,
             quantity: 0,
         },
-
         {//6
             ImgSrc: "./img/pencil/fcexpress.jpeg",
             ImgAlt: "Express Image",
@@ -65,7 +60,6 @@ window.onload = function()
             price: 9.50,
             quantity: 0,
         },
-
         {//7
             ImgSrc: "./img/pencil/stabilopencil.jpeg",
             ImgAlt: "Pencil Image",
@@ -74,7 +68,6 @@ window.onload = function()
             price: 5.50,
             quantity: 0,
         },
-
         {//8
             ImgSrc: "./img/pencil/pentelwhite.jpeg",
             ImgAlt: "Pen Image",
@@ -83,7 +76,6 @@ window.onload = function()
             price: 5.50,
             quantity: 0,
         },
-//---------------------
         {//9
             ImgSrc: "./img/pencil/staedtlercolor.jpeg",
             ImgAlt: "Staedtler Image",
@@ -166,11 +158,9 @@ window.onload = function()
         }
     ];
 
-    //const mainContainer = document.getElementsByClassName('container');
     const cat = document.querySelector(".catalogue");
     const invoice = document.querySelector(".invoice");
     const totalAmt = document.querySelector(".totalAmt");
-    //const button = document.querySelectorAll("button");
     let userAccount = '';
     let totalPurchase = 0;
 
@@ -197,25 +187,22 @@ window.onload = function()
             {
                 resetToOriginal();
             }
-        }
-        //custNameElement.innerText = event.target.form[0].value;//'ABC Co';
-        
+        }        
     }  //SJ5010618 - End of loginAccountHandler(event) { ... }
 
     //SJ5010618 - Create button event handler for login button
     function createLoginLogoutHandle()
     {
-        //buttonClass = 'incButton'.concat(index);
         const button = document.querySelector('.loginButton');
 
         button.addEventListener('click', loginAccountHandler);
-
     }  //SJ5010618 - End of function createLoginLogoutHandle() { ... }
 
     //SJ5010618 - This function reset itemsArray quantity field to 0
     function resetItemsArray()
     {
-        itemsArray.forEach(function(item)
+        //itemsArray.forEach(function(item)
+        itemsArray.forEach((item) =>
         {
             if (item.quantity)
             {
@@ -223,20 +210,19 @@ window.onload = function()
             }
         });
     }
+
     //SJ2150518 - Function to populateMerchandise(goodsArray)
     function populateMerchandise()
     {
-        //const cat = document.getElementsByClassName("catalogue");
         let figureElement = '';
         let imgElement = '';
         let figcaptionElement = '';
         let addButton = '';
         let delButton = '';
         let totalButton = 0;
-        //let adhocElement = '';
 
         //SJ0130518 - Populate merchandise items on catologue area
-        itemsArray.forEach(function(item, index)
+        itemsArray.forEach((item, index) => 
         {
             figureElement = document.createElement('figure');
             imgElement = document.createElement('img');
@@ -271,12 +257,12 @@ window.onload = function()
     //SJ0130518 - Function to style invoice and totalAmt
     function styleInvoice(invoice)
     {
-        //adhocElement = document.createElement('');
         invoice.innerText = 'Total:';
         invoice.style.color = 'red';
         invoice.style.margin = '15px 5px 10px 10px';
         invoice.style.display = 'inline-block';
     }
+
     function styleTotalAmt(totalAmt, amount)
     {
         totalAmt.innerText = '$'.concat(amount);
@@ -309,7 +295,6 @@ window.onload = function()
         let addButton = '';
         let delButton = '';
         let buttonArray = [];
-        //let totalButton = 0;
 
         //SJ1280518 - Item's description, qty purchase, add and minus button to facilitate change of 
         //purchase items, unit price, and sut-total
@@ -319,8 +304,7 @@ window.onload = function()
         tableContents += "<tr><th>Item</th><th>Quantity</th><th></th><th>Unit Price</th><th>Sub total</th></thead><tbody>";
 
         //SJ1280518 - Creating row data for the table
-        //let buttonNdx = 0;
-        itemsArray.forEach(function(item, index)
+        itemsArray.forEach((item, index) => 
         {
             if (item.quantity !== 0)
             {
@@ -342,13 +326,12 @@ window.onload = function()
     }
 
     //SJ4310518 - This function facilitate adjustment to purchase
-    function adjustPurchase (event)
+    function adjustPurchase(event)
     {
+        //event.preventDefault();
         const invoice = document.querySelector(".invoice");
         const totalAmt = document.querySelector(".totalAmt");
-        //event.preventDefault();
         let buttonName = event.target.className;
-        //let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));  //SJ4310518 - SJTODO: what happens when button digit is > 9
         const firstInteger = getFirstNonAlpha(buttonName);
         const ndx = parseInt(buttonName.substr(firstInteger+1, (buttonName.length-1)));
         const qty = document.querySelector(".qtyClass".concat(ndx));
@@ -375,8 +358,7 @@ window.onload = function()
         //SJ4310518 - Now adjust the invoice panel
         styleInvoice(invoice);
         styleTotalAmt(totalAmt, totalPurchase);
-//SJ4310518 - if (itemsArray[ndx].quantity > 0) { ... }
-    }
+    }  //SJ2050618 - End of adjustPurchase() { ... }
 
     //SJ4310518 - This function create callback to button from view invoice details screen
     function addButtonCallback(buttonArray)
@@ -384,7 +366,7 @@ window.onload = function()
         let buttonClass = '';
         let button = '';
 
-        buttonArray.forEach(function(index)
+        buttonArray.forEach((index) => 
         {
             //SJ0130518 - This is for add button
             buttonClass = 'incButton'.concat(index);
@@ -404,10 +386,8 @@ window.onload = function()
     const viewDetail = function(event)
     {
         //SJ5250518 - Replace catalogue elements with invoice details
-        //let buttonName = event.target.className;
         const invoiceString = "Invoice: ".concat('006411');
         let invNumber = '';
-        //cat.innerHTML = invoiceNumber;
 
         //SJ5250518 - First remove catalogue items to make room for invoice detail
         cat.innerHTML = '';
@@ -415,7 +395,6 @@ window.onload = function()
         //SJ5010618 - Here we deal with view button
         if (event.currentTarget.innerText === "View")
         {
-            //event.target.className = 'back';
             event.currentTarget.innerText = "Back";
             createInvoiceNumberDIV();  //SJ1280518 - Create DIV element for invoice number
             invNumber = document.querySelector(".invoiceNoClass");
@@ -425,7 +404,6 @@ window.onload = function()
             invNumber.style.left = '0px';
             invNumber.innerText = invoiceString;
 
-            //invDetail = createInvoiceDetailDIV();
             populateInvoiceDetail(addButtonCallback);
         }
         //SJ5010618 - Deal with back button
@@ -434,7 +412,6 @@ window.onload = function()
             event.currentTarget.innerText = "View";
             populateMerchandise();  //SJ5010618 - Restore merchandised main screen
         }
-
     }  //SJ5250518 - End of viewDetail() function
 
     //SJ0030618 - Function to reset to original state
@@ -455,9 +432,6 @@ window.onload = function()
     //SJ5250518 - Function to confirm purchase
     const confirmTransaction = function(event)
     {
-        //const confirm = window.confirm('Please confirm to send');
-
-        //if (confirm)
         if (window.confirm('Please confirm to send'))
         {
             resetToOriginal();
@@ -473,7 +447,6 @@ window.onload = function()
             const invoice = document.querySelector(".invoice");
             const totalAmt = document.querySelector(".totalAmt");
             let buttonName = event.target.className;
-            //let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
 
             const firstInteger = getFirstNonAlpha(buttonName);
             const ndx = parseInt(buttonName.substr(firstInteger+1, (buttonName.length-1)));
@@ -502,10 +475,8 @@ window.onload = function()
     let delPurchase = function(event)
     {
         //event.preventDefault();
-        //const invoice = '';
         const totalAmt = document.querySelector(".totalAmt");
         let buttonName = event.target.className;
-        //let ndx = parseInt(buttonName.substr((buttonName.length-1), (buttonName.length-1)));
 
         const firstInteger = getFirstNonAlpha(buttonName);
         const ndx = parseInt(buttonName.substr(firstInteger+1, (buttonName.length-1)));
@@ -528,7 +499,7 @@ window.onload = function()
         }
     }  //SJ0130518 - End of delPurchase() function
 
-    //let allButton = document.querySelectorAll('button');
+    //SJ2050618 - This function adds event listeners to add and del button
     function createButtonEventListener(totalButton)
     {
         for (let i=0; i<totalButton; i++)
@@ -589,7 +560,7 @@ window.onload = function()
     {
         var table = document.createElement('table');
         var tr = document.createElement('tr');
-        
+
         //row for the day letters
         for(var c=0; c<=6; c++)
         {
@@ -598,7 +569,7 @@ window.onload = function()
             tr.appendChild(td);
         }
         table.appendChild(tr);
-    
+
         //create 2nd row
         tr = document.createElement('tr');
         var c;
@@ -612,7 +583,7 @@ window.onload = function()
             td.innerHTML = "";
             tr.appendChild(td);
         }
-    
+
         var count = 1;
         for(; c<=6; c++)
         {
@@ -622,7 +593,7 @@ window.onload = function()
             tr.appendChild(td);
         }
         table.appendChild(tr);
-    
+
         //rest of the date rows
         for(var r=3; r<=7; r++)
         {
@@ -650,65 +621,3 @@ window.onload = function()
     //SJ0130518 - End -------------------------------
 
 }  //SJ0130518 - End of main function
-
-/*
-//const paragraph = document.createElement('p');
-//const div = document.createElement('div');
-//paragraph.innerText = 'Adding some text as content';
-//paragraph.setAttribute('id', 'my-paragraph');
-//paragraph.style.fontWeight = 'bold';
-//paragraph.style.color = 'green';
-//div.border = '1px solid gray';
-//div.appendChild(paragraph);
-//document.body.appendChild(div);
-//button.addEventListener('click', clickHandler);
-//button.addEventListener('dblclick', dblclickHandler);
-//button.removeEventListener('click', clickHandler);
-
-
-//SJ0130518 - Sample for form
-const form = document.querySelector('form');
-
-form.onsubmit = function() {
-	// This code will get executed when the form is submited
-  // Returning false we don't execute the form submition
-  return false;
-}
-// also
-const form = document.querySelector('form');
-form.onsubmit = function(event) {
-  event.preventDefault();
-}
-// or
-form.addEventHandler('submit', function(event) {
-  event.preventDefault();
-});
-
-function clickHandler() {
-	console.log(this);
-}
-
-//SJ0130518 - Sample for button event handler
-let button = document.querySelector('button');
-button.addEventListener('click', clickHandler);
-button.removeEventListener('click', clickHandler);
-
-//SJ0130518 - More sample
-
-
-function parseResponseAsJSON(response)
-{
-    return response.json;
-}
-
-function getTvEpisodes(data)
-{
-    return data.show;
-}
-
-fetch(apiURL
-.then(parseResponseAsJSON)
-.then(getTvEpisodes)
-.then(showEpisodes)
-.catch(showError)
-*/

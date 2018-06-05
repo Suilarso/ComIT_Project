@@ -21,6 +21,10 @@
 ### Invoice Detail Screen
 > Purchased items will be displayed in invoice detail screen with each line for each item purchase. Each line will consist of item's description, qty purchase, add and minus button to facilitate change of purchase items, unit price, and sut-total.
 
+#### Area For Improvements
+* The calendar that appears on the left panel should have the current date circled or highlighted.
+* When the main screen is launched it should display company's review and only display merchandised items once user provides a valid login identification.
+
 **Example:**
 ```tbd
 TBD

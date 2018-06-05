@@ -132,11 +132,6 @@ button[type='submit']:hover {
     cursor: pointer;
 }
 
-/*
-    background-color: chocolate;
-    box-shadow: 0 2px 1px #777;
-*/
-
 /* SJ3250418 - This style is to help ease of development. Remove after use */
 .lowerHeader {
     border-bottom: 1px solid black;
@@ -144,7 +139,6 @@ button[type='submit']:hover {
 
 .headerID > nav > div[class="links"] {
     height: 60px;
-    /*width: 85%;*/
     width: 65%;
 }
 
@@ -457,73 +451,5 @@ input[type="submit"]:hover {
 {
     margin: 10px 5px;
     text-align: center;
-}
-
-/*
-.container > .missionPanel
-{
-
-}
-*/
-/* SJ6050518 - Below style belongs to personal web, copy only those related, the rest will be
-   removed when the project is working. */
-
-#main {
-    font-size: 16px;
-    padding: 0px 15px;
-    white-space: normal;
-    text-align: justify;
-}
-
-/* SJ1090418 - Retrieved from version 1 of about.html*/
-#profileImg {
-    float: left;
-    margin: 10px 25px;
-    border: 1px;
-    padding: 1px;
-}
-
-#profileDesc {
-    display: inline;
-    margin: 5px 20px;
-    /*margin-left: 10px;
-    margin-right: 10px;
-    max-width: 800px;
-    max-height: 800px;*/
-}
-
-.miscStuff, .contactInfo {
-    margin: 25px 20px;
-}
-
-#profileDesc > h2 {
-    margin: 10px 0px 5px 0px;
-}
-
-/* SJ1090418 - CSS style for gallery.html */
-.galleryTheme {
-    margin: 0px 5px;
-}
-
-#main .galleryH2 {
-    margin: 25px 25px;
-}
-
-/* SJ1090418 - Retrieved from general.html */
-.tableStyle {
-    text-align: center;
-}
-
-.tableStyle .linkID:hover {
-    background-color: lightgray;
-}
-
-.rowId:nth-child(even) {
-    /*background-color: rgba(204, 188, 188, 0.212);*/
-    background-color: rgba(204, 188, 188, 0.863);
-}
-
-.tableClass, .videoArea {
-    margin: 5px 25px;
 }
 
